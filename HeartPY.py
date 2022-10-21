@@ -1,4 +1,3 @@
-from cProfile import label
 import tkinter as tk
 from tkinter import ttk
 from tkinter import *
@@ -9,7 +8,7 @@ arduino = serial.Serial('COM4', 9600)
 class Proyecto(tk.Tk):#Contains the methods of the window
     def __init__(self, window) : #initializes the state of an object
         self.wind = window #store the window as a parameter
-        self.wind.title('Proyecto')#title of the windows
+        self.wind.title('HeartPY')#title of the windows
         self.wind.geometry('600x400+375+50') #window dimensions
         self.wind.resizable(False, False) #remove the maximize option
         self.windtext = Label(self.wind, text='Calculadora de salud', font="Century_Gothic")#title
@@ -41,7 +40,7 @@ class Proyecto(tk.Tk):#Contains the methods of the window
                 bpm = int(arduino.readline().decode('utf-8')) #comunication with arduino monitor serial
                 NewWind = Toplevel(window) #open a new window
                 NewWind.geometry('500x500')#new window dimensions
-                NewWind.title('Coso')#title new window
+                NewWind.title('HeartPY')#title new window
                 self.wind.withdraw()
                 NewWind.update()
                 
@@ -103,11 +102,7 @@ class Proyecto(tk.Tk):#Contains the methods of the window
                                 comparacionFem()    
                         if genero == "masculino":
                                 comparacionMasc()
-                                   
-                        
-                
-                                   
-                                        
+                                                                           
         self.boton = Button(frame, text = 'Enviar Datos', command=obtener_info).pack(ipady =0, ipadx= 36, pady=30) #create the button that sends the data
                 
 
