@@ -27,7 +27,7 @@ class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
         self.labeledad.pack(ipady=15, ipadx = 0)#posicion del texto
         self.edad = ttk.Combobox(frame, state='readonly') #declara combobox
         self.edad.pack(ipady=0.5, ipadx= 2)#posicion del combobox
-        self.edad['values'] = ('20 a 29',  '29 a 39', '39 a 49', '+50')#valores del combobox
+        self.edad['values'] = ('20 a 29', '29 a 39', '39 a 49','+50')#valores del combobox
         self.edad.current(0) #valores predeterminados
         self.edad.pack(ipady=  0, ipadx= 0) #posicion del input
 #selector de genero con combobox        
@@ -50,7 +50,7 @@ class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
 
 #se usan condicionales para comparar edad y genero con datos optimos para la salud
                 def comparacionFem():
-                        label_estado = Label(NewWind, text="Su estado de salud es ", font="Century_Gothic")
+                        label_estado = Label(NewWind, text="Su estado de salud es ")
                         label_estado.place(x=100, y=100)
                         if edad == "20 a 29":
                                 if bpm >= 78 and bpm <= 94:
@@ -60,17 +60,17 @@ class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
                         if edad == "29 a 39":
                                 if bpm >= 80 and bpm <= 96:
                                         label_estado.configure(text="Su estado de salud es optimo        ")
-                                elif bpm < 80 and bpm > 96:
+                                elif bpm < 80 or bpm > 96:
                                         label_estado.configure(text="Su estado de salud es no optimo") 
                         if edad == "39 a 49":
                                 if bpm >= 80 and bpm <= 98:
                                         label_estado.configure(text="Su estado de salud es optimo        ")    
-                                elif bpm > 80 and bpm < 98:  
+                                elif bpm > 80 or bpm < 98:  
                                         label_estado.configure(text="Su estado de salud es no optimo")          
                         if edad == "+50":
                                 if bpm >= 84 and bpm <= 102:
                                         label_estado.configure(text="Su estado de salud es optimo        ")
-                                elif bpm > 84 and bpm < 102:
+                                elif bpm > 84 or bpm < 102:
                                         label_estado.configure(text="Su estado de salud es no optimo") 
                                         
                 def comparacionMasc():
@@ -84,17 +84,17 @@ class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
                         if edad == "29 a 39":
                                 if bpm >= 74 and bpm <= 84:
                                         label_estado.configure(text="Su estado de salud es optimo        ") 
-                                elif bpm < 74 and bpm > 84:
+                                elif bpm < 74 or bpm > 84:
                                         label_estado.configure(text="Su estado de salud es no optimo")    
                         if edad == "39 a 49":
                                 if bpm >= 74 and bpm <= 88:
                                         label_estado.configure(text="Su estado de salud es optimo        ")  
-                                elif bpm > 74 and bpm < 88:  
+                                elif bpm > 74 or bpm < 88:  
                                         label_estado.configure(text="Su estado de salud es no optimo")          
                         if edad == "+50":
                                 if bpm >= 76 and bpm <= 88:
                                         label_estado.configure(text="Su estado de salud es optimo        ")
-                                elif bpm > 76 and bpm < 88:
+                                elif bpm > 76 or bpm < 88:
                                         label_estado.configure(text="Su estado de salud es no optimo")
                                                 
                 while True:
