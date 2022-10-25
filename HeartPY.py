@@ -12,6 +12,7 @@ class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
         self.wind.title('HeartPY')#titulo de la ventana
         self.wind.geometry('600x400+375+50') #cambia el tamaño de la ventana
         self.wind.resizable(False, False) #elimina la opcion de maximzar la ventana
+        self.wind.iconbitmap('C:/Users/totoe/Desktop/HeartPY/icon.ico')
         self.windtext = Label(self.wind, text='Calculadora de salud')#Titulo a dentro de la ventana
         self.windtext.defaultfont = font.nametofont("TkDefaultFont") #Cambia la fuente default
         self.wind.defaultfont = font.nametofont("TkDefaultFont") #Cambia la fuente default
