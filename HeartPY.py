@@ -13,7 +13,7 @@ class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
         self.wind.geometry('600x400+375+50') #cambia el tamaño de la ventana
         self.wind.resizable(False, False) #elimina la opcion de maximzar la ventana
         self.wind.iconbitmap('C:/Users/totoe/Desktop/HeartPY/icon.ico')#cambia el icono
-        self.wind['bg'] ='#b2e2f2'
+        self.wind['bg'] ='#b2e2f2'#cambia el color de la ventana
         self.windtext = Label(self.wind, text='Calculadora de salud')#Titulo a dentro de la ventana
         self.windtext.defaultfont = font.nametofont("TkDefaultFont") #Cambia la fuente default
         self.wind.defaultfont = font.nametofont("TkDefaultFont") #Cambia la fuente default
@@ -23,13 +23,13 @@ class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
         frame = LabelFrame(self.wind) #definimos contenedor
         frame.pack(ipady= 20, ipadx = 60, pady=40, anchor= tk.N) #posicion del contenedor
         frame.config(borderwidth=1, relief='solid')
-        frame['bg'] = '#97b8db'
+        frame['bg'] = '#97b8db'#cambia el color del contenedor
         frame.defaultfont = font.nametofont("TkDefaultFont") #Cambia la fuente default
         frame.defaultfont.configure(family= "Bahnschrift SemiLight", size=12) #se elige la fuente default
     
 #se crea un input edad
         self.labeledad = Label(frame, text= 'Edad')#texto que acompaña al input
-        self.labeledad['bg'] = '#97b8db'
+        self.labeledad['bg'] = '#97b8db'#cambia el color del texto
         self.labeledad.pack(ipady=15, ipadx = 0)#posicion del texto
         self.edad = ttk.Combobox(frame, state='readonly') #declara combobox
         self.edad.pack(ipady=0.5, ipadx= 2)#posicion del combobox
@@ -38,7 +38,7 @@ class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
         self.edad.pack(ipady=  0, ipadx= 0) #posicion del input
 #selector de genero con combobox        
         self.labelgenero = Label(frame, text = 'Genero')  #text that appears in front of the input
-        self.labelgenero['bg'] = '#97b8db'
+        self.labelgenero['bg'] = '#97b8db'#cambia el color del texto
         self.labelgenero.pack(ipady=  15, ipadx= 0) #position text
         self.genero = ttk.Combobox(frame, state='readonly') #declare combobox
         self.genero.pack(ipady=0.5, ipadx= 2)#position of the combobox
