@@ -1,49 +1,54 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, font
 from tkinter import *
 import serial
 
-arduino = serial.Serial('COM4', 9600)
 
-class Proyecto(tk.Tk):#Contains the methods of the window
-    def __init__(self, window) : #initializes the state of an object
-        self.wind = window #store the window as a parameter
-        self.wind.title('HeartPY')#title of the windows
-        self.wind.geometry('600x400+375+50') #window dimensions
-        self.wind.resizable(False, False) #remove the maximize option
-        self.windtext = Label(self.wind, text='Calculadora de salud', font="Century_Gothic")#title
-        self.windtext.pack(ipady= 30)#position
-#a container is created
-        frame = LabelFrame(self.wind, text ='Ingrese sus datos', font="Century_Gothic") #name of the container
-        frame.pack(ipady= 20, ipadx = 40, anchor= tk.N) #position of the container
-#input age
-        self.labeledad = Label(frame, text= 'Edad')#text that appears in front of the input
-        self.labeledad.pack(ipady=15, ipadx = 0)#position text
-        self.edad = ttk.Combobox(frame, state='readonly') #declare combobox
-        self.edad.pack(ipady=0.5, ipadx= 2)#position of the combobox
-        self.edad['values'] = ('20 a 29',  '29 a 39', '39 a 49', '+50')#values of the combobox
-        self.edad.current(0) #default value
-        self.edad.pack(ipady=  0, ipadx= 0) #position input
-        self.edad.focus()
-#Combobox Gender
+arduino = serial.Serial('COM5', 9600)
+
+class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
+    def __init__(self, window) : #inicializa el estado de un objeto
+        self.wind = window #almacena la vetana como parametro
+        self.wind.title('HeartPY')#titulo de la ventana
+        self.wind.geometry('600x400+375+50') #cambia el tamaño de la ventana
+        self.wind.resizable(False, False) #elimina la opcion de maximzar la ventana
+        self.windtext = Label(self.wind, text='Calculadora de salud')#Titulo a dentro de la ventana
+        self.windtext.defaultfont = font.nametofont("TkDefaultFont") #Cambia la fuente default
+        self.wind.defaultfont = font.nametofont("TkDefaultFont") #Cambia la fuente default
+        self.wind.defaultfont.configure(family= "Bahnschrift SemiLight", size=12) #se elige la fuente default
         
+#Se crea un contenedor
+        frame = LabelFrame(self.wind, text ='Ingrese sus datos') #nombre del contenedor
+        frame.pack(ipady= 20, ipadx = 40, anchor= tk.N) #posicion del contenedor
+        frame.defaultfont = font.nametofont("TkDefaultFont") #Cambia la fuente default
+        frame.defaultfont.configure(family= "Bahnschrift SemiLight", size=12) #se elige la fuente default
+#se crea un input edad
+        self.labeledad = Label(frame, text= 'Edad')#texto que acompaña al input
+        self.labeledad.pack(ipady=15, ipadx = 0)#posicion del texto
+        self.edad = ttk.Combobox(frame, state='readonly') #declara combobox
+        self.edad.pack(ipady=0.5, ipadx= 2)#posicion del combobox
+        self.edad['values'] = ('20 a 29',  '29 a 39', '39 a 49', '+50')#valores del combobox
+        self.edad.current(0) #valores predeterminados
+        self.edad.pack(ipady=  0, ipadx= 0) #posicion del input
+#selector de genero con combobox        
         self.labelgenero = Label(frame, text = 'Genero')  #text that appears in front of the input
         self.labelgenero.pack(ipady=  15, ipadx= 0) #position text
         self.genero = ttk.Combobox(frame, state='readonly') #declare combobox
         self.genero.pack(ipady=0.5, ipadx= 2)#position of the combobox
         self.genero['values'] = ('masculino',  'femenino')#values of the combobox
         self.genero.current(0) #default value
-#send data button
+#boton que envia datos
         def obtener_info():
-                genero = self.genero.get()#save the variables of the gender field
-                edad = self.edad.get()#save the variables of the age field
-                bpm = int(arduino.readline().decode('utf-8')) #comunication with arduino monitor serial
-                NewWind = Toplevel(window) #open a new window
-                NewWind.geometry('500x500')#new window dimensions
-                NewWind.title('HeartPY')#title new window
-                self.wind.withdraw()
-                NewWind.update()
-                
+                genero = self.genero.get()#guarda los valores del campo genero
+                edad = self.edad.get()#guarda los valores del campo edad
+                bpm = int(arduino.readline().decode('utf-8')) #se comunica con el monitor serial de arduino
+                NewWind = Toplevel(window) #abre una nueva ventana
+                NewWind.geometry('500x500')#dimensiones de la nueva ventana
+                NewWind.title('HeartPY')#titulo de la nueva ventana
+                self.wind.withdraw()#cierra la ventana padre(self.wind)
+                NewWind.update()#actualiza la ventana
+
+#se usan condicionales para comparar edad y genero con datos optimos para la salud
                 def comparacionFem():
                         label_estado = Label(NewWind, text="Su estado de salud es ", font="Century_Gothic")
                         label_estado.place(x=100, y=100)
@@ -54,22 +59,22 @@ class Proyecto(tk.Tk):#Contains the methods of the window
                                         label_estado.configure(text="Su estado de salud es no optimo")              
                         if edad == "29 a 39":
                                 if bpm >= 80 and bpm <= 96:
-                                    label_estado.configure(text="Su estado de salud es optimo        ")
+                                        label_estado.configure(text="Su estado de salud es optimo        ")
                                 elif bpm < 80 and bpm > 96:
                                         label_estado.configure(text="Su estado de salud es no optimo") 
                         if edad == "39 a 49":
                                 if bpm >= 80 and bpm <= 98:
-                                       label_estado.configure(text="Su estado de salud es optimo        ")    
+                                        label_estado.configure(text="Su estado de salud es optimo        ")    
                                 elif bpm > 80 and bpm < 98:  
                                         label_estado.configure(text="Su estado de salud es no optimo")          
                         if edad == "+50":
                                 if bpm >= 84 and bpm <= 102:
-                                       label_estado.configure(text="Su estado de salud es optimo        ")
+                                        label_estado.configure(text="Su estado de salud es optimo        ")
                                 elif bpm > 84 and bpm < 102:
                                         label_estado.configure(text="Su estado de salud es no optimo") 
                                         
                 def comparacionMasc():
-                        label_estado = Label(NewWind, text="Su estado de salud es ", font="Century_Gothic")
+                        label_estado = Label(NewWind, text="Su estado de salud es ")
                         label_estado.place(x=100, y=100)
                         if edad == "20 a 29":
                                 if bpm >= 70 and bpm <= 84:
@@ -78,23 +83,23 @@ class Proyecto(tk.Tk):#Contains the methods of the window
                                         label_estado.configure(text="Su estado de salud es no optimo")          
                         if edad == "29 a 39":
                                 if bpm >= 74 and bpm <= 84:
-                                    label_estado.configure(text="Su estado de salud es optimo        ") 
+                                        label_estado.configure(text="Su estado de salud es optimo        ") 
                                 elif bpm < 74 and bpm > 84:
                                         label_estado.configure(text="Su estado de salud es no optimo")    
                         if edad == "39 a 49":
                                 if bpm >= 74 and bpm <= 88:
-                                       label_estado.configure(text="Su estado de salud es optimo        ")  
+                                        label_estado.configure(text="Su estado de salud es optimo        ")  
                                 elif bpm > 74 and bpm < 88:  
                                         label_estado.configure(text="Su estado de salud es no optimo")          
                         if edad == "+50":
                                 if bpm >= 76 and bpm <= 88:
-                                       label_estado.configure(text="Su estado de salud es optimo        ")
+                                        label_estado.configure(text="Su estado de salud es optimo        ")
                                 elif bpm > 76 and bpm < 88:
                                         label_estado.configure(text="Su estado de salud es no optimo")
                                                 
                 while True:
                         bpm = int(arduino.readline().decode('utf-8')) #comunication with arduino monitor serial
-                        Label(NewWind, text=bpm, font="Century_Gothic").place(x=0, y=0) #BPM in tkinter window
+                        Label(NewWind, text=bpm).place(x=0, y=0) #BPM in tkinter window
                         Label(NewWind, text="Fuente: https://mejorconsalud.as.com/frecuencia-cardiaca-normal-edad-calcularla/").place(x=0, y=475)
                         print(bpm)
                         NewWind.update() #window update
