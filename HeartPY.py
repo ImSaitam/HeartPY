@@ -16,7 +16,7 @@ class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
         self.wind.resizable(False, False) #Elimina la opcion de maximzar la ventana
         self.wind['bg'] ='#b2e2f2'#Cambia el color de la ventana
         self.wind.defaultfont = font.nametofont("TkDefaultFont") #Cambia la fuente default
-        self.wind.iconbitmap('C:/Users/every/Desktop/HeartPY/HeartPY/icon.ico') #Cambiar icono de la ventana (cambiar ruta a donde haya sido descargado)
+        self.wind.iconbitmap('icon.ico') #Cambiar icono de la ventana (cambiar ruta a donde haya sido descargado)
         self.wind.defaultfont.configure(family= "Bahnschrift SemiLight", size=12) #Se elige la fuente default
 #Se crea un contenedor en la ventana self.wind
         frame = LabelFrame(self.wind) #Definimos contenedor
@@ -48,25 +48,53 @@ class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
                 fol_Wind = Toplevel(window) #Abre una nueva ventana
                 fol_Wind.geometry('500x500')#Dimensiones de la nueva ventana
                 fol_Wind.title('Cuida tu salud')#Titulo de la nueva ventana
+                fol_Wind.iconbitmap('icon.ico') #Cambiar icono de la ventana (cambiar ruta a donde haya sido descargado)
                 fol_Wind['bg'] ='#b2e2f2'#Cambia el color de la ventana
                 self.wind.withdraw()#Cierra la ventana padre(self.wind)
-                fol_Wind.titulo = Label(fol_Wind, text='Algunos consejos utiles', font=('Bahnschrift SemiLight', 18)).place(x=120, y=20)#escribimos titulo
-
+                fol_Wind.titulo = Label(fol_Wind, text='Algunos consejos utiles', font=('Bahnschrift SemiLight', 18))
+                fol_Wind.titulo.place(x=120, y=20)#escribimos titulo
+                fol_Wind.titulo['bg'] ='#b2e2f2'
+                
                 fol_Wind.frame = LabelFrame(fol_Wind)#se crea un contenedor adentro de la ventana fol_Wind
                 fol_Wind.frame.pack(ipadx='180', ipady='180', expand=True)#cambiamos el tamaño del contenedor
+                fol_Wind.frame['bg'] = '#97b8db'
 #usamos la etiqueta label para agregar consejos
-                frame.consejo1 = Label(fol_Wind.frame, text="❤Haga actividad fisica").place(x=0, y=25)
-                frame.consejo2 = Label(fol_Wind.frame, text="❤Evite el sedentarismo").place(x=0, y=50)
-                frame.consejo3 = Label(fol_Wind.frame, text="❤Controle su presión arterial").place(x=0, y=75)
-                frame.consejo4 = Label(fol_Wind.frame, text="❤Controle su colesterol").place(x=0, y=100)
-                frame.consejo5 = Label(fol_Wind.frame, text="❤Mantenga un peso saludable").place(x=0, y=125)
-                frame.consejo6 = Label(fol_Wind.frame, text="❤Mantenga una dieta saludable").place(x=0, y=150)
-                frame.consejo7 = Label(fol_Wind.frame, text="❤Limite el consumo de alcohol").place(x=0, y=175)
-                frame.consejo8 = Label(fol_Wind.frame, text="❤No fume").place(x=0, y=200)
-                frame.consejo9 = Label(fol_Wind.frame, text="❤Controle su estrés").place(x=0, y=225)
-                frame.consejo10 = Label(fol_Wind.frame, text="❤Mantenga habitos de sueño saludables").place(x=0, y=250)
-                frame.consejo11 = Label(fol_Wind.frame, text="❤Presentece a examenes medicos diarios").place(x=0, y=275)
-                frame.consejo12 = Label(fol_Wind.frame, text="❤Controle enfermedades preexistentes").place(x=0, y=300)
+                frame.consejo1 = Label(fol_Wind.frame, text="❤Haga actividad fisica")
+                frame.consejo1.place(x=0, y=25)
+                frame.consejo1['bg'] = '#97b8db'
+                frame.consejo2 = Label(fol_Wind.frame, text="❤Evite el sedentarismo")
+                frame.consejo2.place(x=0, y=50)
+                frame.consejo2['bg'] = '#97b8db'
+                frame.consejo3 = Label(fol_Wind.frame, text="❤Controle su presión arterial")
+                frame.consejo3.place(x=0, y=75)
+                frame.consejo3['bg'] = '#97b8db'
+                frame.consejo4 = Label(fol_Wind.frame, text="❤Controle su colesterol")
+                frame.consejo4.place(x=0, y=100)
+                frame.consejo4['bg'] = '#97b8db'
+                frame.consejo5 = Label(fol_Wind.frame, text="❤Mantenga un peso saludable")
+                frame.consejo5.place(x=0, y=125)
+                frame.consejo5['bg'] = '#97b8db'
+                frame.consejo6 = Label(fol_Wind.frame, text="❤Mantenga una dieta saludable")
+                frame.consejo6.place(x=0, y=150)
+                frame.consejo6['bg'] = '#97b8db'
+                frame.consejo7 = Label(fol_Wind.frame, text="❤Limite el consumo de alcohol")
+                frame.consejo7.place(x=0, y=175)
+                frame.consejo7['bg'] = '#97b8db'
+                frame.consejo8 = Label(fol_Wind.frame, text="❤No fume")
+                frame.consejo8.place(x=0, y=200)
+                frame.consejo8['bg'] = '#97b8db'
+                frame.consejo9 = Label(fol_Wind.frame, text="❤Controle su estrés")
+                frame.consejo9.place(x=0, y=225)
+                frame.consejo9['bg'] = '#97b8db'
+                frame.consejo10 = Label(fol_Wind.frame, text="❤Mantenga habitos de sueño saludables")
+                frame.consejo10.place(x=0, y=250)
+                frame.consejo10['bg'] = '#97b8db'
+                frame.consejo11 = Label(fol_Wind.frame, text="❤Presentece a examenes medicos diarios")
+                frame.consejo11.place(x=0, y=275)
+                frame.consejo11['bg'] = '#97b8db'
+                frame.consejo12 = Label(fol_Wind.frame, text="❤Controle enfermedades preexistentes")
+                frame.consejo12.place(x=0, y=300)
+                frame.consejo12['bg'] = '#97b8db'
         self.boton1 = Button(window, text = 'Cuida tu salud', command = redirect_to_folleto).place(x=240, y=350)#creamos boton que redirecciona a una nueva ventana
 #Boton que envia datos
         def obtener_info():
@@ -76,6 +104,7 @@ class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
                 NewWind = Toplevel(window) #Abre una nueva ventana
                 NewWind.geometry('500x500')#Dimensiones de la nueva ventana
                 NewWind.title('HeartPY')#Titulo de la nueva ventana
+                self.NewWind.iconbitmap('icon.ico') #Cambiar icono de la ventana (cambiar ruta a donde haya sido descargado)
                 self.wind.withdraw()#Cierra la ventana padre(self.wind)
                 NewWind.update()#Actualiza la ventana
 #Se usan condicionales para comparar edad y genero con datos optimos para la salud
