@@ -6,7 +6,7 @@ import webbrowser as wb#libreria hipervinculo
 import serial#libreria python
 
 
-arduino = serial.Serial('COM4', 9600) #Conexión con arduino
+arduino = serial.Serial('COM5', 9600) #Conexión con arduino
 
 class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
     def __init__(self, window) : #Inicializa el estado de un objeto
@@ -14,6 +14,7 @@ class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
         self.wind.title('HeartPY')#Titulo de la ventana
         self.wind.geometry('600x400+375+50') #Cambia el tamaño de la ventana
         self.wind.resizable(False, False) #Elimina la opcion de maximzar la ventana
+        self.wind.iconbitmap('icon.ico') #Cambiar icono de la ventana (cambiar ruta a donde haya sido descargado)
         self.wind['bg'] ='#b2e2f2'#Cambia el color de la ventana
         self.wind.defaultfont = font.nametofont("TkDefaultFont") #Cambia la fuente default
         self.wind.iconbitmap('icon.ico') #Cambiar icono de la ventana (cambiar ruta a donde haya sido descargado)
@@ -40,61 +41,61 @@ class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
         self.labelgenero.pack(ipady=  15, ipadx= 0) #Posicion del texto
         self.genero = ttk.Combobox(frame, state='readonly') #Declarar combobox
         self.genero.pack(ipady=0.5, ipadx= 2)#Posicion del combobox
-        self.genero['values'] = ('masculino',  'femenino')#Valores del combobox de genero
+        self.genero['values'] = ('Masculino',  'Femenino')#Valores del combobox de genero
         self.genero.current(0) #Default value
 
         
         def redirect_to_folleto():
+                self.wind.withdraw()#Cierra la ventana padre(self.wind)
                 fol_Wind = Toplevel(window) #Abre una nueva ventana
                 fol_Wind.geometry('500x500')#Dimensiones de la nueva ventana
                 fol_Wind.title('Cuida tu salud')#Titulo de la nueva ventana
                 fol_Wind.iconbitmap('icon.ico') #Cambiar icono de la ventana (cambiar ruta a donde haya sido descargado)
                 fol_Wind['bg'] ='#b2e2f2'#Cambia el color de la ventana
-                self.wind.withdraw()#Cierra la ventana padre(self.wind)
                 fol_Wind.titulo = Label(fol_Wind, text='Algunos consejos utiles', font=('Bahnschrift SemiLight', 18))
                 fol_Wind.titulo.place(x=120, y=20)#escribimos titulo
-                fol_Wind.titulo['bg'] ='#b2e2f2'
-                
+                fol_Wind.titulo['bg'] ='#b2e2f2'#cambiamos el color del texto
+#creamos un frame
                 fol_Wind.frame = LabelFrame(fol_Wind)#se crea un contenedor adentro de la ventana fol_Wind
                 fol_Wind.frame.pack(ipadx='180', ipady='180', expand=True)#cambiamos el tamaño del contenedor
-                fol_Wind.frame['bg'] = '#97b8db'
+                fol_Wind.frame['bg'] = '#97b8db'#cambiamos el color del texto
 #usamos la etiqueta label para agregar consejos
                 frame.consejo1 = Label(fol_Wind.frame, text="❤Haga actividad fisica")
                 frame.consejo1.place(x=0, y=25)
-                frame.consejo1['bg'] = '#97b8db'
+                frame.consejo1['bg'] = '#97b8db'#cambiamos el color del texto
                 frame.consejo2 = Label(fol_Wind.frame, text="❤Evite el sedentarismo")
                 frame.consejo2.place(x=0, y=50)
-                frame.consejo2['bg'] = '#97b8db'
+                frame.consejo2['bg'] = '#97b8db'#cambiamos el color del texto
                 frame.consejo3 = Label(fol_Wind.frame, text="❤Controle su presión arterial")
                 frame.consejo3.place(x=0, y=75)
-                frame.consejo3['bg'] = '#97b8db'
+                frame.consejo3['bg'] = '#97b8db'#cambiamos el color del texto
                 frame.consejo4 = Label(fol_Wind.frame, text="❤Controle su colesterol")
                 frame.consejo4.place(x=0, y=100)
-                frame.consejo4['bg'] = '#97b8db'
+                frame.consejo4['bg'] = '#97b8db'#cambiamos el color del texto
                 frame.consejo5 = Label(fol_Wind.frame, text="❤Mantenga un peso saludable")
                 frame.consejo5.place(x=0, y=125)
-                frame.consejo5['bg'] = '#97b8db'
+                frame.consejo5['bg'] = '#97b8db'#cambiamos el color del texto
                 frame.consejo6 = Label(fol_Wind.frame, text="❤Mantenga una dieta saludable")
                 frame.consejo6.place(x=0, y=150)
-                frame.consejo6['bg'] = '#97b8db'
+                frame.consejo6['bg'] = '#97b8db'#cambiamos el color del texto
                 frame.consejo7 = Label(fol_Wind.frame, text="❤Limite el consumo de alcohol")
                 frame.consejo7.place(x=0, y=175)
-                frame.consejo7['bg'] = '#97b8db'
+                frame.consejo7['bg'] = '#97b8db'#cambiamos el color del texto
                 frame.consejo8 = Label(fol_Wind.frame, text="❤No fume")
                 frame.consejo8.place(x=0, y=200)
-                frame.consejo8['bg'] = '#97b8db'
+                frame.consejo8['bg'] = '#97b8db'#cambiamos el color del texto
                 frame.consejo9 = Label(fol_Wind.frame, text="❤Controle su estrés")
                 frame.consejo9.place(x=0, y=225)
-                frame.consejo9['bg'] = '#97b8db'
+                frame.consejo9['bg'] = '#97b8db'#cambiamos el color del texto
                 frame.consejo10 = Label(fol_Wind.frame, text="❤Mantenga habitos de sueño saludables")
                 frame.consejo10.place(x=0, y=250)
-                frame.consejo10['bg'] = '#97b8db'
+                frame.consejo10['bg'] = '#97b8db'#cambiamos el color del texto
                 frame.consejo11 = Label(fol_Wind.frame, text="❤Presentece a examenes medicos diarios")
                 frame.consejo11.place(x=0, y=275)
-                frame.consejo11['bg'] = '#97b8db'
+                frame.consejo11['bg'] = '#97b8db'#cambiamos el color del texto
                 frame.consejo12 = Label(fol_Wind.frame, text="❤Controle enfermedades preexistentes")
                 frame.consejo12.place(x=0, y=300)
-                frame.consejo12['bg'] = '#97b8db'
+                frame.consejo12['bg'] = '#97b8db'#cambiamos el color del texto
         self.boton1 = Button(window, text = 'Cuida tu salud', command = redirect_to_folleto).place(x=240, y=350)#creamos boton que redirecciona a una nueva ventana
 #Boton que envia datos
         def obtener_info():
@@ -104,8 +105,10 @@ class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
                 NewWind = Toplevel(window) #Abre una nueva ventana
                 NewWind.geometry('500x500')#Dimensiones de la nueva ventana
                 NewWind.title('HeartPY')#Titulo de la nueva ventana
-                self.NewWind.iconbitmap('icon.ico') #Cambiar icono de la ventana (cambiar ruta a donde haya sido descargado)
                 self.wind.withdraw()#Cierra la ventana padre(self.wind)
+                def mas_info():
+                        wb.open("https://www.argentina.gob.ar/salud/glosario/enfermedadcardiovascular") #Abrir pagina en el navegador                   
+                boton_mas_info = Button(NewWind, text="Mas Info", command=mas_info).place(x=200, y=460) #Boton para redireccionar al navegador
                 NewWind.update()#Actualiza la ventana
 #Se usan condicionales para comparar edad y genero con datos optimos para la salud
                 def comparacionFem():
@@ -156,8 +159,6 @@ class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
                                 elif bpm > 76 or bpm < 88:
                                         label_estado.configure(text="Su estado de salud es no optimo")
                                         
-                def mas_info():
-                        wb.open("https://www.argentina.gob.ar/salud/glosario/enfermedadcardiovascular") #Abrir pagina en el navegador                   
                 
                                                 
                 while True:
@@ -165,13 +166,12 @@ class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
                         Label(NewWind, text=bpm, font=('Bahnschrift SemiLight', 43)).place(x=180, y=200) #BPM en ventana tkinter
                         label_corazon = Label(NewWind, text="❤", fg="red", font=('Calibri', 40))
                         label_corazon.place(x=275, y=205)
-                        boton_mas_info = Button(NewWind, text="Mas Info", command=mas_info).place(x=200, y=460) #Boton para redireccionar al navegador
                         NewWind.update() #window update
-                        if genero == "femenino":
+                        if genero == "Femenino":
                                 comparacionFem()    
-                        if genero == "masculino":
+                        if genero == "Masculino":
                                 comparacionMasc()
-                                                                                             
+                                                                                    
         self.boton2 = Button(frame, text = 'Enviar Datos', command=obtener_info).pack(ipady =0, ipadx= 36, pady=30) #Crear boton que manda los datos
                 
 
