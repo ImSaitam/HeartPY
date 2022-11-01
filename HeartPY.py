@@ -2,13 +2,14 @@ from cProfile import label
 import tkinter as tk
 from tkinter import ttk, font
 from tkinter import *
-import webbrowser as wb#libreria hipervinculo
-import serial#libreria python
+import webbrowser as wb
+import serial
 
 
 arduino = serial.Serial('COM5', 9600) #Conexión con arduino
 
 class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
+
     def __init__(self, window) : #Inicializa el estado de un objeto
         self.wind = window #Almacena la vetana como parametro
         self.wind.title('HeartPY')#Titulo de la ventana
@@ -44,7 +45,7 @@ class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
         self.genero['values'] = ('Masculino',  'Femenino')#Valores del combobox de genero
         self.genero.current(0) #Default value
 
-        
+       
         def redirect_to_folleto():
                 self.wind.withdraw()#Cierra la ventana padre(self.wind)
                 fol_Wind = Toplevel(window) #Abre una nueva ventana
@@ -96,6 +97,12 @@ class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
                 frame.consejo12 = Label(fol_Wind.frame, text="❤Controle enfermedades preexistentes")
                 frame.consejo12.place(x=0, y=300)
                 frame.consejo12['bg'] = '#97b8db'#cambiamos el color del texto
+                def return_main():#definimos el funcionamiento del boton
+                        self.wind.deiconify()#abre la ventana principal
+                        fol_Wind.destroy()#destruye la ventana fol_Wind
+                self.boton_exit= Button(fol_Wind, text='Volver', command= return_main)
+                self.boton_exit.place(x=220, y=450)
+      
         self.boton1 = Button(window, text = 'Cuida tu salud', command = redirect_to_folleto).place(x=240, y=350)#creamos boton que redirecciona a una nueva ventana
 #Boton que envia datos
         def obtener_info():
@@ -106,9 +113,17 @@ class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
                 NewWind.geometry('500x500')#Dimensiones de la nueva ventana
                 NewWind.title('HeartPY')#Titulo de la nueva ventana
                 self.wind.withdraw()#Cierra la ventana padre(self.wind)
+                
                 def mas_info():
-                        wb.open("https://www.argentina.gob.ar/salud/glosario/enfermedadcardiovascular") #Abrir pagina en el navegador                   
-                boton_mas_info = Button(NewWind, text="Mas Info", command=mas_info).place(x=200, y=460) #Boton para redireccionar al navegador
+                        wb.open("https://mejorconsalud.as.com/frecuencia-cardiaca-normal-edad-calcularla/") #Abrir pagina en el navegador                   
+                
+                boton_mas_info = Button(NewWind, text="Mas Info", command=mas_info).place(x=260, y=460) #Boton para redireccionar al navegador
+               
+                def volver_principal():
+                        NewWind.destroy()#destruir la ventana NewWind
+                        self.wind.deiconify()#volvemos a la ventana principal
+
+                self.boton3 = Button(NewWind, text='Volver', command=volver_principal).place(x=160, y=460)#creamos boton para volver                 
                 NewWind.update()#Actualiza la ventana
 #Se usan condicionales para comparar edad y genero con datos optimos para la salud
                 def comparacionFem():
@@ -163,15 +178,14 @@ class Proyecto(tk.Tk):#Contiene los metodos de las ventanas
                                                 
                 while True:
                         bpm = int(arduino.readline().decode('utf-8')) #Comunicacion con arduino monitor serial
-                        Label(NewWind, text=bpm, font=('Bahnschrift SemiLight', 43)).place(x=180, y=200) #BPM en ventana tkinter
+                        Label(NewWind, text=bpm, font=('Bahnschrift SemiLight', 43)).place(x=180, y=180) #BPM en ventana tkinter
                         label_corazon = Label(NewWind, text="❤", fg="red", font=('Calibri', 40))
-                        label_corazon.place(x=275, y=205)
+                        label_corazon.place(x=275, y=185)
                         NewWind.update() #window update
                         if genero == "Femenino":
                                 comparacionFem()    
                         if genero == "Masculino":
-                                comparacionMasc()
-                                                                                    
+                                comparacionMasc()                                       
         self.boton2 = Button(frame, text = 'Enviar Datos', command=obtener_info).pack(ipady =0, ipadx= 36, pady=30) #Crear boton que manda los datos
                 
 
